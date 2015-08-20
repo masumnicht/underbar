@@ -100,6 +100,15 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    var obj = {};
+    var arr = [];
+    _.each(array, function(el){
+        obj[el]= el;
+    })
+    _.each(obj, function(key){
+      arr.push(key);
+    })
+    return arr;
   };
 
 
