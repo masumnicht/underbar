@@ -167,7 +167,7 @@
       accumulator=collection.shift();
     }
     _.each(collection, function(el){
-      accumulator = iterator(accumulator, el)
+      accumulator = iterator(accumulator, el);
     })
     return accumulator;
   };
@@ -199,6 +199,10 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    return _.reduce(collection, function(result,item){
+      iterator = iterator || _.identity;
+      return iterator(item) ? true : result;
+    },false);
   };
 
 
@@ -221,7 +225,7 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
-  };
+    
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
