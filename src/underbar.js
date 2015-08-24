@@ -231,11 +231,29 @@
       }
     })
     return obj;
+    // var arr = [];
+    // _.each(arguments,function(el){
+    //   arr.push(el);
+    // })
+    // return _.reduce(arr, function(a,b){
+    //   for(var prop in b){
+    //     a[prop]= b[prop];
+    //   }
+    //   return a;
+    // }, obj)
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    _.each(arguments, function(el){
+      for(var prop in el){
+        if(obj[prop]===undefined){
+          obj[prop] = el[prop];
+        }
+      }
+    })
+    return obj;
   };
 
 
@@ -279,6 +297,8 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    var memo = [];
+
   };
 
   // Delays a function for the given number of milliseconds, and then calls
