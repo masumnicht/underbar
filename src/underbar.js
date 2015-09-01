@@ -294,7 +294,16 @@
   // _.memoize should return a function that, when called, will check if it has
   // already computed the result for the given argument and return that value
   // instead if possible.
-  _.memoize = function(func) { 
+  _.memoize = function(func) {
+    // var cache = {};
+    // var result;
+    // return function(){
+    //   if(!(arguments in cache)){
+    //     result = func.apply(this,arguments)
+    //     cache[arguments] = result
+    //   }
+    //   return result;
+    // }
   };
 
   // Delays a function for the given number of milliseconds, and then calls
@@ -304,6 +313,10 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    var args = [].slice.call(arguments, 2);
+    return setTimeout(function(){
+      return func.apply(this, args);
+    }, wait);
   };
 
 
@@ -320,7 +333,7 @@
   _.shuffle = function(array) {
     var randArr = [];
     var copy = array.slice();
-    for(var i=Math.floor(Math.random()*copy.length) ; randArr.length<array.length; ) {
+    for(var i=Math.floor(Math.random()*copy.length); randArr.length<array.length; ) {
         randArr.push(copy[i]);
         copy.splice(i,1);
         i=Math.floor(Math.random()*copy.length);
@@ -362,6 +375,7 @@
   //
   // Hint: Use Array.isArray to check if something is an array
   _.flatten = function(nestedArray, result) {
+
   };
 
   // Takes an arbitrary number of arrays and produces an array that contains
