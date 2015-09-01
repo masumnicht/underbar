@@ -227,20 +227,18 @@
   _.extend = function(obj) {
     _.each(arguments, function(el){
       for(var prop in el){
-        obj[prop]=el[prop]
+        obj[prop]=el[prop];
       }
     })
     return obj;
-    // var arr = [];
-    // _.each(arguments,function(el){
-    //   arr.push(el);
-    // })
+    // var arr = [].slice.call(arguments);
     // return _.reduce(arr, function(a,b){
     //   for(var prop in b){
     //     a[prop]= b[prop];
     //   }
     //   return a;
     // }, obj)
+    
   };
 
   // Like extend, but doesn't ever overwrite a key that already
@@ -296,9 +294,7 @@
   // _.memoize should return a function that, when called, will check if it has
   // already computed the result for the given argument and return that value
   // instead if possible.
-  _.memoize = function(func) {
-    var memo = [];
-
+  _.memoize = function(func) { 
   };
 
   // Delays a function for the given number of milliseconds, and then calls
@@ -322,6 +318,14 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+    var randArr = [];
+    var copy = array.slice();
+    for(var i=Math.floor(Math.random()*copy.length) ; randArr.length<array.length; ) {
+        randArr.push(copy[i]);
+        copy.splice(i,1);
+        i=Math.floor(Math.random()*copy.length);
+    }
+    return randArr[0]===array[0] ? _.shuffle(array) : randArr;
   };
 
 
